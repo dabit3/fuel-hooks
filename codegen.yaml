@@ -1,0 +1,13 @@
+schema: 'https://node-beta-2.fuel.network/graphql'
+documents: './graphql/*.gql'
+generates:
+  ./src/graphql/generated.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typed-document-node
+      - fragment-matcher
+      - typescript-react-query
+    config:
+      fetcher: fetch
+      dedupeFragments: true

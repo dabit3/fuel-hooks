@@ -1,0 +1,10 @@
+query nodeInfo {
+    nodeInfo{
+        utxoValidation
+        vmBacktrace
+        minGasPrice
+        maxTx
+        maxDepth
+        nodeVersion
+    }
+}

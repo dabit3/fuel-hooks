@@ -1,0 +1,5 @@
+query resourcesToSpend($owner: Address!, $queryPerAsset: [SpendQueryElementInput!]!, $excludedIds: ExcludeInput) {
+    resourcesToSpend(owner: $owner, queryPerAsset: $queryPerAsset, excludedIds: $excludedIds) {
+        ...ResourceFields
+    }
+}

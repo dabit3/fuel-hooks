@@ -1,0 +1,10 @@
+mutation continueTx($id: ID!) {
+    continueTx(id: $id){
+        state
+        breakpoint{
+            contract
+            pc
+        }
+        jsonReceipts
+    }
+}

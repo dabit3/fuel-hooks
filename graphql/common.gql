@@ -1,0 +1,233 @@
+fragment ConsensusFields on Consensus {
+  ... on Genesis {
+      chainConfigHash
+      coinsRoot
+      contractsRoot
+      messagesRoot
+  }
+  ... on PoAConsensus {
+    signature
+  }
+}
+
+fragment InputFields on Input {
+  ... on InputCoin {
+    utxoId
+    owner
+    amount
+    assetId
+    txPointer
+    witnessIndex
+    maturity
+    predicate
+    predicateData
+  }
+  ... on InputContract {
+    utxoId
+    balanceRoot
+    stateRoot
+    txPointer
+    contract {
+      ...ContractFields
+    }
+  }
+  ... on InputMessage {
+    messageId
+    sender
+    recipient
+    amount
+    nonce
+    witnessIndex
+    data
+    predicate
+    predicateData
+  }
+}
+
+fragment ContractFields on Contract {
+  id
+  bytecode
+  salt
+}
+
+fragment OutputFields on Output {
+  ... on CoinOutput {
+    to
+    amount
+    assetId
+  }
+  ... on ContractOutput {
+    inputIndex
+    balanceRoot
+    stateRoot
+  }
+  ... on MessageOutput {
+    recipient
+    amount
+  }
+  ... on ChangeOutput {
+    to
+    amount
+    assetId
+  }
+  ... on VariableOutput {
+    to
+    amount
+    assetId
+  }
+  ... on ContractCreated {
+    contract {
+      ...ContractFields
+    }
+    stateRoot
+  }
+}
+
+fragment TransactionStatusFields on TransactionStatus {
+  ... on SubmittedStatus {
+    time
+  }
+  ... on SuccessStatus {
+    block {
+      ...BlockFields
+    }
+    time
+    programState {
+      ...ProgramStateFields
+    }
+  }
+  ... on SqueezedOutStatus {
+    reason
+  }
+  ... on FailureStatus {
+    block {
+      ...BlockFields
+    }
+    time
+    reason
+    programState {
+      ...ProgramStateFields
+    }
+  }
+}
+
+fragment ProgramStateFields on ProgramState {
+  returnType
+  data
+}
+
+fragment BlockFields on Block {
+  id
+  header {
+    ...HeaderFields
+  }
+  consensus {
+    ...ConsensusFields
+  }
+  transactions {
+    ...TransactionFields
+  }
+}
+
+fragment HeaderFields on Header {
+  id
+  daHeight
+  transactionsCount
+  outputMessagesCount
+  transactionsRoot
+  outputMessagesRoot
+  height
+  prevRoot
+  time
+}
+
+fragment TransactionFields on Transaction {
+  id
+  inputAssetIds
+  inputContracts {
+    ...ContractFields
+  }
+  gasPrice
+  gasLimit
+  maturity
+  txPointer
+  isScript
+  isCreate
+  isMint
+  inputs {
+    ...InputFields
+  }
+  outputs {
+    ...OutputFields
+  }
+  witnesses
+  receiptsRoot
+  receipts {
+    ...ReceiptFields
+  }
+  script
+  scriptData
+  bytecodeWitnessIndex
+  bytecodeLength
+  salt
+  storageSlots
+  rawPayload
+}
+
+fragment ReceiptFields on Receipt {
+  contract {
+    ...ContractFields
+  }
+  pc
+  is
+  to {
+    ...ContractFields
+  }
+  toAddress
+  amount
+  assetId
+  gas
+  param1
+  param2
+  val
+  ptr
+  digest
+  reason
+  ra
+  rb
+  rc
+  rd
+  len
+  receiptType
+  rawPayload
+  result
+  gasUsed
+  data
+  messageId
+  sender
+  recipient
+  nonce
+  contractId
+}
+
+fragment ResourceFields on Resource {
+  ... on Coin {
+    utxoId
+    owner
+    amount
+    assetId
+    maturity
+    status
+    blockCreated
+  }
+  ... on Message {
+    messageId
+    amount
+    sender
+    recipient
+    nonce
+    data
+    daHeight
+    fuelBlockSpend
+  }
+}

@@ -1,0 +1,3 @@
+mutation produceBlocks($blocksToProduce: U64!, $time: TimeParameters) {
+    produceBlocks(blocksToProduce: $blocksToProduce, time: $time)
+}

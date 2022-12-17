@@ -1,0 +1,75 @@
+query transaction($id: TransactionId!) {
+    transaction(id: $id){
+        id
+        inputAssetIds
+        inputContracts{
+            id
+            bytecode
+            salt
+        }
+        gasPrice
+        gasLimit
+        maturity
+        txPointer
+        isScript
+        isCreate
+        isMint
+        inputs {
+            ...InputFields
+        }
+        outputs {
+            ...OutputFields
+        }
+        witnesses
+        receiptsRoot
+        status {
+            ...TransactionStatusFields
+        }
+        receipts{
+            contract{
+                id
+                bytecode
+                salt
+            }
+            pc
+            is
+            to{
+                id
+                bytecode
+                salt
+            }
+            toAddress
+            amount
+            assetId
+            gas
+            param1
+            param2
+            val
+            ptr
+            digest
+            reason
+            ra
+            rb
+            rc
+            rd
+            len
+            receiptType
+            rawPayload
+            result
+            gasUsed
+            data
+            messageId
+            sender
+            recipient
+            nonce
+            contractId
+        }
+        script
+        scriptData
+        bytecodeWitnessIndex
+        bytecodeLength
+        salt
+        storageSlots
+        rawPayload
+    }
+}

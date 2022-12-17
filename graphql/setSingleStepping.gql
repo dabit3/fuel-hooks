@@ -1,0 +1,3 @@
+mutation setSingleStepping($id: ID!, $enable: Boolean!) {
+    setSingleStepping(id: $id, enable: $enable)
+}

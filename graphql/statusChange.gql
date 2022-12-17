@@ -1,0 +1,5 @@
+subscription statusChange($id: TransactionId!) {
+    statusChange(id: $id) {
+        ...TransactionStatusFields
+    }
+}

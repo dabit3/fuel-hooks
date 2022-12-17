@@ -1,0 +1,24 @@
+query messageProof($transactionId: TransactionId!, $messageId: MessageId!) {
+    messageProof(transactionId: $transactionId, messageId: $messageId){
+        proofSet
+        proofIndex
+        sender
+        recipient
+        nonce
+        amount
+        data
+        signature
+        header{
+            id
+            daHeight
+            transactionsCount
+            outputMessagesCount
+            transactionsRoot
+            outputMessagesRoot
+            height
+            prevRoot
+            time
+            applicationHash
+        }
+    }
+}

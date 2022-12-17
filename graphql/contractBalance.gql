@@ -1,0 +1,7 @@
+query contractBalance($contract: ContractId!, $asset: AssetId!) {
+    contractBalance(contract: $contract, asset: $asset){
+        contract
+        amount
+        assetId
+    }
+}

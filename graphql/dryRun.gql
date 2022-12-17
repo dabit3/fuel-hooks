@@ -1,0 +1,41 @@
+mutation dryRun($tx: HexString!, $utxoValidation: Boolean) {
+    dryRun(tx: $tx, utxoValidation: $utxoValidation){
+        contract{
+            id
+            bytecode
+            salt
+        }
+        pc
+        is
+        to{
+            id
+            bytecode
+            salt
+        }
+        toAddress
+        amount
+        assetId
+        gas
+        param1
+        param2
+        val
+        ptr
+        digest
+        reason
+        ra
+        rb
+        rc
+        rd
+        len
+        receiptType
+        rawPayload
+        result
+        gasUsed
+        data
+        messageId
+        sender
+        recipient
+        nonce
+        contractId
+    }
+}

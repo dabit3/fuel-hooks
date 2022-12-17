@@ -1,0 +1,7 @@
+query balance($owner: Address!, $assetId: AssetId!) {
+    balance(owner: $owner, assetId: $assetId){
+        owner
+        amount
+        assetId
+    }
+}
