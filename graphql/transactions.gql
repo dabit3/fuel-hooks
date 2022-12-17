@@ -1,14 +1,11 @@
 query transactions($first: Int, $after: String, $last: Int, $before: String) {
     transactions(first: $first, after: $after, last: $last, before: $before){
         pageInfo{
-            hasPreviousPage
-            hasNextPage
-            startCursor
-            endCursor
+            ...PageInfoFields
         }
         edges{
             cursor
-            node{
+            node {
                 id
                 inputAssetIds
                 inputContracts{
@@ -35,43 +32,7 @@ query transactions($first: Int, $after: String, $last: Int, $before: String) {
                     ...TransactionStatusFields
                 }
                 receipts{
-                    contract{
-                        id
-                        bytecode
-                        salt
-                    }
-                    pc
-                    is
-                    to{
-                        id
-                        bytecode
-                        salt
-                    }
-                    toAddress
-                    amount
-                    assetId
-                    gas
-                    param1
-                    param2
-                    val
-                    ptr
-                    digest
-                    reason
-                    ra
-                    rb
-                    rc
-                    rd
-                    len
-                    receiptType
-                    rawPayload
-                    result
-                    gasUsed
-                    data
-                    messageId
-                    sender
-                    recipient
-                    nonce
-                    contractId
+                    ...ReceiptFields
                 }
                 script
                 scriptData
@@ -82,7 +43,7 @@ query transactions($first: Int, $after: String, $last: Int, $before: String) {
                 rawPayload
             }
         }
-        nodes{
+        nodes {
             id
             inputAssetIds
             inputContracts{
@@ -108,44 +69,8 @@ query transactions($first: Int, $after: String, $last: Int, $before: String) {
             status {
                 ...TransactionStatusFields
             }
-            receipts{
-                contract{
-                    id
-                    bytecode
-                    salt
-                }
-                pc
-                is
-                to{
-                    id
-                    bytecode
-                    salt
-                }
-                toAddress
-                amount
-                assetId
-                gas
-                param1
-                param2
-                val
-                ptr
-                digest
-                reason
-                ra
-                rb
-                rc
-                rd
-                len
-                receiptType
-                rawPayload
-                result
-                gasUsed
-                data
-                messageId
-                sender
-                recipient
-                nonce
-                contractId
+            receipts {
+                ...ReceiptFields
             }
             script
             scriptData

@@ -8,6 +8,14 @@ fragment HeaderFields on Header {
   height
   prevRoot
   time
+  applicationHash
+}
+
+fragment PageInfoFields on PageInfo {
+  hasPreviousPage
+  hasNextPage
+  startCursor
+  endCursor
 }
 
 fragment ProgramStateFields on ProgramState {
