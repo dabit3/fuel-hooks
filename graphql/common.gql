@@ -1,3 +1,26 @@
+fragment HeaderFields on Header {
+  id
+  daHeight
+  transactionsCount
+  outputMessagesCount
+  transactionsRoot
+  outputMessagesRoot
+  height
+  prevRoot
+  time
+}
+
+fragment ProgramStateFields on ProgramState {
+  returnType
+  data
+}
+
+fragment ContractFields on Contract {
+  id
+  bytecode
+  salt
+}
+
 fragment ConsensusFields on Consensus {
   ... on Genesis {
       chainConfigHash
@@ -9,6 +32,54 @@ fragment ConsensusFields on Consensus {
     signature
   }
 }
+
+fragment TransactionFields on Transaction {
+  id
+  inputAssetIds
+  inputContracts {
+    ...ContractFields
+  }
+  gasPrice
+  gasLimit
+  maturity
+  txPointer
+  isScript
+  isCreate
+  isMint
+  inputs {
+    ...InputFields
+  }
+  outputs {
+    ...OutputFields
+  }
+  witnesses
+  receiptsRoot
+  receipts {
+    ...ReceiptFields
+  }
+  script
+  scriptData
+  bytecodeWitnessIndex
+  bytecodeLength
+  salt
+  storageSlots
+  rawPayload
+}
+
+fragment BlockFields on Block {
+  id
+  header {
+    ...HeaderFields
+  }
+  consensus {
+    ...ConsensusFields
+  }
+  transactions {
+    ...TransactionFields
+  }
+}
+
+
 
 fragment InputFields on Input {
   ... on InputCoin {
@@ -42,12 +113,6 @@ fragment InputFields on Input {
     predicate
     predicateData
   }
-}
-
-fragment ContractFields on Contract {
-  id
-  bytecode
-  salt
 }
 
 fragment OutputFields on Output {
@@ -109,69 +174,6 @@ fragment TransactionStatusFields on TransactionStatus {
       ...ProgramStateFields
     }
   }
-}
-
-fragment ProgramStateFields on ProgramState {
-  returnType
-  data
-}
-
-fragment BlockFields on Block {
-  id
-  header {
-    ...HeaderFields
-  }
-  consensus {
-    ...ConsensusFields
-  }
-  transactions {
-    ...TransactionFields
-  }
-}
-
-fragment HeaderFields on Header {
-  id
-  daHeight
-  transactionsCount
-  outputMessagesCount
-  transactionsRoot
-  outputMessagesRoot
-  height
-  prevRoot
-  time
-}
-
-fragment TransactionFields on Transaction {
-  id
-  inputAssetIds
-  inputContracts {
-    ...ContractFields
-  }
-  gasPrice
-  gasLimit
-  maturity
-  txPointer
-  isScript
-  isCreate
-  isMint
-  inputs {
-    ...InputFields
-  }
-  outputs {
-    ...OutputFields
-  }
-  witnesses
-  receiptsRoot
-  receipts {
-    ...ReceiptFields
-  }
-  script
-  scriptData
-  bytecodeWitnessIndex
-  bytecodeLength
-  salt
-  storageSlots
-  rawPayload
 }
 
 fragment ReceiptFields on Receipt {

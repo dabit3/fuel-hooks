@@ -2,16 +2,7 @@ query block($id: BlockId, $height: U64) {
     block(id: $id, height: $height){
         id
         header{
-            id
-            daHeight
-            transactionsCount
-            outputMessagesCount
-            transactionsRoot
-            outputMessagesRoot
-            height
-            prevRoot
-            time
-            applicationHash
+            ...HeaderFields
         }
         consensus {
             ...ConsensusFields

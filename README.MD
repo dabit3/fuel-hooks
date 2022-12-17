@@ -5,15 +5,27 @@ Example implementation for React Hooks abstracting away the need to know graphql
 ### Usage
 
 ```javascript
+// in root
+import type { AppProps } from 'next/app'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+const queryClient = new QueryClient()
+
+export default function App({ Component, pageProps }: AppProps) {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Component {...pageProps} />
+    </QueryClientProvider>
+  )
+}
+
+// in component
 import {
-  useTransactionsByOwnerQuery
+  useTransactionsQuery
 } from './generated'
 
 const {
-  data, error, loading
-} = useTransactionsByOwnerQuery({
-  variables: {
-     owner: 'some-address'
-  }
+  data, isLoading, error
+} = useTransactionsQuery({
+  first: 100
 })
 ```

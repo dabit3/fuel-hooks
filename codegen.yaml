@@ -5,9 +5,10 @@ generates:
     plugins:
       - typescript
       - typescript-operations
-      - typed-document-node
       - fragment-matcher
       - typescript-react-query
     config:
-      fetcher: fetch
       dedupeFragments: true
+      fetcher:
+        func: "./fetcher#fetchData"
+        isReactHook: false
