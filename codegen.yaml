@@ -1,7 +1,7 @@
 schema: 'https://node-beta-2.fuel.network/graphql'
 documents: './graphql/*.gql'
 generates:
-  ./src/graphql/generated.ts:
+  ./graphql/generated.ts:
     plugins:
       - typescript
       - typescript-operations
