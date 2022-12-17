@@ -16,15 +16,14 @@ export const fetchData = <TData, TVariables>(
         query,
         variables,
       }),
-    });
+    })
 
     const json = await res.json();
 
     if (json.errors) {
-      const { message } = json.errors[0] || "Error..";
-      console.log({ message })
+      console.log('error: ', json.errors)
     }
 
     return json.data;
-  };
+  }
 }
